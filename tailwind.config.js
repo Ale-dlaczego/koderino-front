@@ -4,10 +4,20 @@ module.exports = {
 		fontFamily: {
 			'sans': ['Poppins']
 		},
-		extend: {}
+		extend: {
+			colors: {
+				'our-blue': {
+					light: '#C0D6E1',
+					DEFAULT: '#3C5260',
+					
+				}
+			},
+		}
 	},
 	variants: {
-		extend: {},
+		extend: {
+			fontWeight: ['hover']
+		},
 	},
 	plugins: [],
 };

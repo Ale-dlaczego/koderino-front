@@ -2,11 +2,11 @@ import React from 'react';
 
 const LoginRegisterLayout = ({children}) => {
 	return (
-		<div className='h-screen w-screen flex ' style={{backgroundColor: '#3C5260'}}>
-			<div className='h-3/4 container flex m-auto shadow-3xl'>
-				<div style={{backgroundImage: 'url(/assets/background-img.jpeg)', backgroundColor: '#D7D7D5'}}
-					className='bg-cover bg-no-repeat bg-center w-8/12 h-full shadow-2xl' />
-				<div className='p-10'>
+		<div className='h-screen w-screen flex bg-white'>
+			<div className='h-1/2 w-1/2 flex m-auto shadow-2xl'>
+				<div style={{backgroundImage: 'url(/assets/background-img.jpeg)'}}
+					className='bg-cover bg-no-repeat bg-center w-1/2 h-full shadow-2xl bg' />
+				<div className='p-10 w-1/2 bg-our-blue-light form'>
 					{children}
 				</div>
 			</div>
