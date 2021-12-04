@@ -11,26 +11,18 @@ const LoginView = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
-	const handleEmailInput = (e) => {
-		setEmail(e.target.value);
-	};
-
-	const handlePasswordInput = (e) => {
-		setPassword(e.target.value);
-	};
-
 	return (
 		<LoginRegisterLayout>
-			<h1 className='text-white font-semibold text-4xl mb-4'>Zaloguj sie</h1>
+			<h1 className='text-white font-semibold text-4xl mb-4'>Zaloguj się</h1>
 			<p className='mb-12 text-white'>Zaloguj się na swoje konto koderino</p>
 			<div className='flex w-full flex-col'>
-				<EmailInput value={email} onChange={handleEmailInput}/>
-				<PasswordInput value={password} onChange={handlePasswordInput}/>
+				<EmailInput value={email} setValue={setEmail}/>
+				<PasswordInput value={password} setValue={setPassword}/>
 				<HoverableLink title='Zapomniałeś hasła?' linkTo='#' className='text-xs mt-3'/>
 			</div>
 			<div className='flex w-full items-center mt-14'>
 				<PrimaryButton title='Zaloguj się' />
-				<HoverableLink title='Zarejestruj się' linkTo='#' className='ml-6'/>
+				<HoverableLink title='Zarejestruj się' linkTo='/register' className='ml-6'/>
 			</div>
 			<p className='mt-12 text-xs text-white text-right'>
 				&copy; Koderino 2021

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import React from 'react';
 
 export const HoverableLink = ({ title, linkTo, className }) => {
@@ -7,6 +8,6 @@ export const HoverableLink = ({ title, linkTo, className }) => {
 	};
 
 	return (
-		<a href={linkTo} className={classes()} >{title}</a>
+		<Link to={linkTo} className={classes()} >{title}</Link>
 	);
 };

@@ -1,11 +1,14 @@
+import './styles/index.scss';
+
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+import HomeView from './views/HomeView';
+import LoginView from './views/LoginView';
+import { Provider } from 'react-redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './styles/index.scss';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import HomeView from './views/HomeView';
-import { Provider } from 'react-redux';
+import { RegisterView } from './views/RegisterView';
 import store from './store/store';
-import LoginView from './views/LoginView';
 
 ReactDOM.render(
 	<React.StrictMode>
@@ -13,7 +16,8 @@ ReactDOM.render(
 			<BrowserRouter>
 				<Routes>
 					<Route path="/" exact element={<HomeView/>}/>
-					<Route path="/login" exact element={<LoginView/>}/>
+					<Route path="/login" element={<LoginView/>}/>
+					<Route path="/register" element={<RegisterView/>}/>
 				</Routes>
 			</BrowserRouter>
 		</Provider>
