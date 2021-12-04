@@ -15,8 +15,8 @@ export const RegisterView = () => {
 
 	return (
 		<LoginRegisterLayout>
-			<h1 className='text-white font-semibold text-4xl mb-4'>Zarejestruj się</h1>
-			<p className='mb-12 text-white'>Dołącz do społeczności koderino</p>
+			<h1 className='text-white font-semibold text-3xl md:text-4xl mb-4'>Zarejestruj się</h1>
+			<p className='mb-12 text-white text-sm md:text-base'>Dołącz do społeczności koderino</p>
 			<div className='flex w-full flex-col'>
 				<EmailInput value={email} setValue={setEmail}/>
 				<PasswordInput value={password} setValue={setPassword} />
