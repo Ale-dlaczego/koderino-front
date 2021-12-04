@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-export const RepeatPasswordInput = ({value,setValue}) => {
+export const RepeatPasswordInput = ({ value, setValue, isError }) => {
 	const [passwordShown, setPasswordShown] = useState(false);
 
 	const handlePasswordInput = (e) => {
@@ -11,7 +11,7 @@ export const RepeatPasswordInput = ({value,setValue}) => {
 	};
 
 	return (
-		<div className="border-white border-solid border-2 h-11 flex items-center px-3 rounded-md shadow-lg bg-white w-full mt-5">
+		<div className={`${isError ? 'border-red-500' : 'border-white'} border-solid border-2 h-11 flex items-center px-3 rounded-md shadow-lg bg-white w-full mt-5`}>
 			<i className="bx bxs-lock-alt mr-2 text-md text-our-blue" />
 			<input placeholder={'Repeat password'} value={value} onChange={handlePasswordInput} type={passwordShown? 'text' : 'password'} className="text-opacity-50 outline-none  placeholder-opacity-50 w-full text-sm font-medium text-our-blue" />
 			<i className='bx bxs-hide pl-2 cursor-pointer text-our-blue' onClick={toggleShowPassword}/>
