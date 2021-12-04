@@ -4,9 +4,8 @@ import LoginRegisterLayout from '../layouts/LoginRegisterLayout';
 const LoginView = () => {
 	return (
 		<LoginRegisterLayout>
-			<div>
-				asd
-			</div>
+			<h1 className='text-white font-bold text-3xl'>ZALOGUJ SIĘ</h1>
+
 		</LoginRegisterLayout>
 	);
 };

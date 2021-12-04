@@ -1,7 +1,10 @@
 module.exports = {
 	darkMode: false,
 	theme: {
-		extend: {},
+		fontFamily: {
+			'sans': ['Poppins']
+		},
+		extend: {}
 	},
 	variants: {
 		extend: {},

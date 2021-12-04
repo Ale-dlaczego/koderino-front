@@ -19,21 +19,16 @@ module.exports = {
 	],
 	'rules': {
 		'react/prop-types': [0],
-		'indent': [
-			'error',
-			'tab'
-		],
-		'linebreak-style': [
-			'error',
-			'windows'
-		],
-		'quotes': [
-			'error',
-			'single'
-		],
-		'semi': [
-			'error',
-			'always'
-		]
+		indent: ['error', 'tab'],
+		'react/jsx-filename-extension': ['off'],
+		'react/prefer-stateless-function': ['off'],
+		'arrow-body-style': ['error', 'always'],
+		'no-multi-spaces': ['error'],
+		'react/self-closing-comp': ['error', {
+			'component': true,
+			'html': true
+		}],
+		quotes: ['error', 'single'],
+		semi: ['error', 'always'],
 	}
 };
