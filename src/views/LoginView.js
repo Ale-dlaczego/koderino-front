@@ -19,24 +19,22 @@ const LoginView = () => {
 		setPassword(e.target.value);
 	};
 
-	
-
-
-
 	return (
 		<LoginRegisterLayout>
-			<h1 className='text-white font-semibold text-4xl mb-20'>ZALOGUJ SIĘ</h1>
+			<h1 className='text-white font-semibold text-4xl mb-4'>Zaloguj sie</h1>
+			<p className='mb-12 text-white'>Zaloguj się na swoje konto koderino</p>
 			<div className='flex w-full flex-col'>
 				<EmailInput value={email} onChange={handleEmailInput}/>
 				<PasswordInput value={password} onChange={handlePasswordInput}/>
-				<HoverableLink title='Zapomniałeś hasła?' linkTo='#' fontSize='text-xs' margin='mt-3'/>
+				<HoverableLink title='Zapomniałeś hasła?' linkTo='#' className='text-xs mt-3'/>
 			</div>
 			<div className='flex w-full items-center mt-14'>
 				<PrimaryButton title='Zaloguj się' />
-				<HoverableLink title='Zarejestruj się' linkTo='#' margin='ml-6'/>
+				<HoverableLink title='Zarejestruj się' linkTo='#' className='ml-6'/>
 			</div>
-		
-
+			<p className='mt-12 text-xs text-white text-right'>
+				&copy; Koderino 2021
+			</p>
 		</LoginRegisterLayout>
 	);
 };

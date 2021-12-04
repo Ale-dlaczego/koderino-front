@@ -6,7 +6,7 @@ const LoginRegisterLayout = ({children}) => {
 			<div className='h-1/2 w-1/2 flex m-auto shadow-2xl'>
 				<div style={{backgroundImage: 'url(/assets/background-img.jpeg)'}}
 					className='bg-cover bg-no-repeat bg-center w-1/2 h-full shadow-2xl bg' />
-				<div className='p-10 w-1/2 bg-our-blue-light form'>
+				<div className='p-10 w-1/2 bg-our-blue-light'>
 					{children}
 				</div>
 			</div>

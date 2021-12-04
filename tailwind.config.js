@@ -9,7 +9,6 @@ module.exports = {
 				'our-blue': {
 					light: '#C0D6E1',
 					DEFAULT: '#3C5260',
-					
 				}
 			},
 		}
