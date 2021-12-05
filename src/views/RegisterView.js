@@ -9,32 +9,35 @@ import { RepeatPasswordInput } from '../components/inputs/RepeatPasswordInput';
 import api from './../config/api';
 import registerErrors from './../errors/registerErrors';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router';
 
 export const RegisterView = () => {
 
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [repeatPassword, setRepeatPassword] = useState('');
-	const [errors, setErrors]= useState([]);
+	const [errors, setErrors] = useState([]);
+	const navigate = useNavigate();
 
 
 	const register = async () => {
-		if (repeatPassword === '') {
-			setErrors([...errors, 'Repeat password should not be empty']);
-			return;
-		}
-		if (repeatPassword !== password) {
-			setErrors([...errors, 'Repeat password is not equal to password']);
-			return;
-		}
+		
 		try {
 			await api.post('users', {
 				email,
 				password
 			});
+			if (repeatPassword === '') {
+				setErrors([...errors, 'Repeat password should not be empty']);
+				return;
+			}
+			if (repeatPassword !== password) {
+				setErrors([...errors, 'Repeat password is not equal to password']);
+				return;
+			}
 			showSuccessAlert();
 			setErrors([]);
-			//  show user regisdter success alert
+			navigate('/login');
 		} catch (err) {
 			const resErrors = err.response.data.message;
 			setErrors(typeof resErrors === 'object' ? [...resErrors] : [resErrors]);
@@ -51,7 +54,7 @@ export const RegisterView = () => {
 		case registerErrors.EMAIL_MUST_BE_AN_EMAIL:
 			return 'Email musi być poprawny.';
 		case registerErrors.EMAIL_SHOULD_NOT_BE_EMPTY:
-			return 'Email nie może być pusty.';
+			return 'Pole email nie może być puste.';
 		case registerErrors.USER_EMAIL_IS_NOT_UNIQUE:
 			return 'Email już istnieje.';
 		case registerErrors.PASSWORD_MUST_BE_LONGER_THAN_OR_EQUAL_TO_8_CHARACTERS:
@@ -59,7 +62,7 @@ export const RegisterView = () => {
 		case registerErrors.REPEAT_PASSWORD_IS_NOT_EQUAL_TO_PASSWORD:
 			return 'Hasła nie zgadzają się.';
 		case registerErrors.REPEAT_PASSWORD_SHOULD_NOT_BE_EMPTY:
-			return 'Powtórz hasło nie może być pusty.';
+			return 'Pole powtórz hasło nie może być puste.';
 		default:
 			return 'Coś poszło wyjątkowo źle.';
 		}

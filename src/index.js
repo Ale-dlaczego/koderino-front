@@ -17,7 +17,7 @@ ReactDOM.render(
 		<Provider store={store}>
 			<BrowserRouter>
 				<Routes>
-					<Route path="/" exact element={<HomeView/>}/>
+					<Route path="/" element={<HomeView/>}/>
 					<Route path="/login" element={<LoginView/>}/>
 					<Route path="/register" element={<RegisterView/>}/>
 				</Routes>
