@@ -8,7 +8,9 @@ import PrimaryButton from './../components/global/PrimaryButton';
 import { RepeatPasswordInput } from '../components/inputs/RepeatPasswordInput';
 import api from './../config/api';
 import registerErrors from './../errors/registerErrors';
+import { setLoginInputs } from '../store/autocompleteLoginFormSlice';
 import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 
 export const RegisterView = () => {
@@ -17,6 +19,7 @@ export const RegisterView = () => {
 	const [password, setPassword] = useState('');
 	const [repeatPassword, setRepeatPassword] = useState('');
 	const [errors, setErrors] = useState([]);
+	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
 
@@ -35,6 +38,7 @@ export const RegisterView = () => {
 				setErrors([...errors, 'Repeat password is not equal to password']);
 				return;
 			}
+			dispatch(setLoginInputs({email, password}));
 			showSuccessAlert();
 			setErrors([]);
 			navigate('/login');

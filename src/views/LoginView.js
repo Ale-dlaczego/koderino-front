@@ -1,15 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import EmailInput from './../components/inputs/EmailInput';
 import { HoverableLink } from '../components/global/HoverableLink';
 import LoginRegisterLayout from '../layouts/LoginRegisterLayout';
 import PasswordInput from './../components/inputs/PasswordInput';
 import PrimaryButton from './../components/global/PrimaryButton';
+import { useSelector } from 'react-redux';
 
 const LoginView = () => {
 
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const autocompleteLoginFormInputs = useSelector(state => {return state.autocompleteLoginForm;});
+
+	const autocompleteForm = () => {
+		if (autocompleteLoginFormInputs.email !== '' && autocompleteLoginFormInputs.password !== '') {
+			setPassword(autocompleteLoginFormInputs.password);
+			setEmail(autocompleteLoginFormInputs.email);
+		}
+	};
+	
+	useEffect(() => {
+		autocompleteForm();
+	});
 
 	return (
 		<LoginRegisterLayout>
