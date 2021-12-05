@@ -1,22 +1,52 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { CheckboxInput } from '../components/global/CheckboxInput';
+import Constants from './../Constants';
 import EmailInput from './../components/inputs/EmailInput';
 import { HoverableLink } from '../components/global/HoverableLink';
 import LoginRegisterLayout from '../layouts/LoginRegisterLayout';
 import PasswordInput from './../components/inputs/PasswordInput';
 import PrimaryButton from './../components/global/PrimaryButton';
-import { useSelector } from 'react-redux';
+import api from './../config/api';
+import { setToken } from '../store/authorizationSlice';
+import { toast } from 'react-toastify';
+import { useCookies } from 'react-cookie';
 
 const LoginView = () => {
 
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const autocompleteLoginFormInputs = useSelector(state => {return state.autocompleteLoginForm;});
+	const autocompleteLoginFormInputs = useSelector(state => { return state.autocompleteLoginForm; });
+	const [rememberMe, setRememberMe] = useState(false);
+	const dispatch = useDispatch();
+	const [cookies, setCookie] = useCookies();
 
 	const autocompleteForm = () => {
 		if (autocompleteLoginFormInputs.email !== '' && autocompleteLoginFormInputs.password !== '') {
 			setPassword(autocompleteLoginFormInputs.password);
 			setEmail(autocompleteLoginFormInputs.email);
+		}
+	};
+
+	const login = async () => {
+		try {
+			const res= await api.post('auth/login', {
+				email,
+				password
+			});
+			const token = res.data.tokenType + ' ' + res.data.accessToken;
+			if (rememberMe) {
+				localStorage.setItem(Constants.TOKEN_KEY,JSON.stringify(token) );
+			}
+			else {
+				setCookie(Constants.TOKEN_KEY,JSON.stringify(token));
+			}
+			dispatch(setToken(token));
+		}
+		catch (err) {
+			console.error(err);
+			return toast.error('Wprowadź poprawne dane!');
 		}
 	};
 	
@@ -33,11 +63,16 @@ const LoginView = () => {
 				<PasswordInput value={password} setValue={setPassword}/>
 				<HoverableLink title='Zapomniałeś hasła?' linkTo='#' className='text-xs mt-3'/>
 			</div>
-			<div className='flex w-full items-center mt-14 '>
-				<PrimaryButton title='Zaloguj się' />
+			<div className='flex mt-5 items-center'>
+				<CheckboxInput setValue={setRememberMe} value={rememberMe}/>
+				<p className='text-white text-xs font-medium ml-3'>Zapamiętaj mnie</p>
+			</div>
+			<div className='flex w-full items-center mt-9 '>
+				<PrimaryButton title='Zaloguj się' onClick={login}/>
 				<HoverableLink title='Zarejestruj się' linkTo='/register' className='ml-6'/>
 			</div>
-			<p className='mt-12 text-xs text-white text-right'>
+			
+			<p className='mt-3 text-xs text-white text-right'>
 				&copy; Koderino 2021
 			</p>
 		</LoginRegisterLayout>

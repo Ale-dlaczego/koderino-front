@@ -30,5 +30,6 @@ module.exports = {
 		}],
 		quotes: ['error', 'single'],
 		semi: ['error', 'always'],
+		'no-unused-vars': ['off']
 	}
 };
