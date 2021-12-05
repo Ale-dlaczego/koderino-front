@@ -27,6 +27,8 @@ export const authorizationSlice = createSlice({
 		},
 		removeToken: (state) => {
 			state.token = null;
+			Cookies.remove(Constants.TOKEN_KEY);
+			localStorage.removeItem(Constants.TOKEN_KEY);
 		}
 	}
 });

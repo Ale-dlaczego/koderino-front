@@ -12,6 +12,7 @@ import api from './../config/api';
 import { setToken } from '../store/authorizationSlice';
 import { toast } from 'react-toastify';
 import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router';
 
 const LoginView = () => {
 
@@ -21,6 +22,7 @@ const LoginView = () => {
 	const [rememberMe, setRememberMe] = useState(false);
 	const dispatch = useDispatch();
 	const [cookies, setCookie] = useCookies();
+	const navigate = useNavigate();
 
 	const autocompleteForm = () => {
 		if (autocompleteLoginFormInputs.email !== '' && autocompleteLoginFormInputs.password !== '') {
@@ -43,6 +45,7 @@ const LoginView = () => {
 				setCookie(Constants.TOKEN_KEY,JSON.stringify(token));
 			}
 			dispatch(setToken(token));
+			navigate('/dashboard');
 		}
 		catch (err) {
 			console.error(err);
@@ -52,7 +55,7 @@ const LoginView = () => {
 	
 	useEffect(() => {
 		autocompleteForm();
-	});
+	},[]);
 
 	return (
 		<LoginRegisterLayout>

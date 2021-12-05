@@ -3,6 +3,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+import App from './App';
+import { AuthRoute } from './components/global/AuthRoute';
 import HomeView from './views/HomeView';
 import LoginView from './views/LoginView';
 import { Provider } from 'react-redux';
@@ -15,11 +17,16 @@ import store from './store/store';
 ReactDOM.render(
 	<React.StrictMode>
 		<Provider store={store}>
+			<App />
 			<BrowserRouter>
 				<Routes>
 					<Route path="/" element={<HomeView/>}/>
 					<Route path="/login" element={<LoginView/>}/>
-					<Route path="/register" element={<RegisterView/>}/>
+					<Route path="/register" element={<RegisterView />} />
+					
+					<Route path='/dashboard' element={<AuthRoute><HomeView/></AuthRoute>} />
+					
+
 				</Routes>
 			</BrowserRouter>
 			<ToastContainer
