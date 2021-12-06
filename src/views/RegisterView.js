@@ -83,7 +83,7 @@ export const RegisterView = () => {
 			</div>
 			<p className='text-red-500 text-xs font-semibold mt-5'>{translateErrorsMessage()}</p>
 			<div className='flex w-full items-center mt-9'>
-				<PrimaryButton title='Zarejestruj się' onClick={register} />
+				<PrimaryButton title='Zarejestruj się' onClick={register} className={'bg-our-blue hover:scale-110'}/>
 				<HoverableLink title='Zaloguj się' linkTo='/login' className='ml-6'/>
 			</div>
 			<p className='mt-3 text-xs text-white text-right'>

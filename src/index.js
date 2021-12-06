@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import App from './App';
 import { AuthRoute } from './components/global/AuthRoute';
+import { EditView } from './views/EditView';
 import HomeView from './views/HomeView';
 import LoginView from './views/LoginView';
 import { Provider } from 'react-redux';
@@ -28,8 +29,8 @@ ReactDOM.render(
 					<Route path='/dashboard' element={<AuthRoute>
 						<HomeView />
 					</AuthRoute>} />
-					<Route path='/dashboard' element={<AuthRoute>
-						<HomeView />
+					<Route path='/edit' element={<AuthRoute>
+						<EditView />
 					</AuthRoute>} />
 				</Routes>
 			</BrowserRouter>

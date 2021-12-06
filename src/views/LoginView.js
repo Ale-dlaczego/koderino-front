@@ -71,7 +71,7 @@ const LoginView = () => {
 				<p className='text-white text-xs font-medium ml-3'>Zapamiętaj mnie</p>
 			</div>
 			<div className='flex w-full items-center mt-9 '>
-				<PrimaryButton title='Zaloguj się' onClick={login}/>
+				<PrimaryButton title='Zaloguj się' onClick={login} className={'bg-our-blue hover:scale-110'}/>
 				<HoverableLink title='Zarejestruj się' linkTo='/register' className='ml-6'/>
 			</div>
 			

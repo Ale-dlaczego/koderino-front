@@ -1,5 +1,6 @@
 module.exports = {
 	darkMode: false,
+	important: true,
 	theme: {
 		fontFamily: {
 			'sans': ['Poppins']
@@ -16,7 +17,8 @@ module.exports = {
 			},
 			width: {
 				'150': '150px',
-				'350': '350px'
+				'350': '350px',
+				'425': '425px'
 			},
 			height: {
 				'150': '150px'
@@ -26,7 +28,11 @@ module.exports = {
 			},
 			fontSize: {
 				'xxs': '9px'
+			},
+			scale: {
+				'102': '102%'
 			}
+		
 		}
 	},
 	variants: {
