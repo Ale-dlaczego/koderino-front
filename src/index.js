@@ -12,6 +12,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { RegisterView } from './views/RegisterView';
 import { ToastContainer } from 'react-toastify';
+import { UserProfileView } from './views/UserProfileView';
 import store from './store/store';
 
 ReactDOM.render(
@@ -23,10 +24,13 @@ ReactDOM.render(
 					<Route path="/" element={<HomeView/>}/>
 					<Route path="/login" element={<LoginView/>}/>
 					<Route path="/register" element={<RegisterView />} />
-					
-					<Route path='/dashboard' element={<AuthRoute><HomeView/></AuthRoute>} />
-					
-
+					<Route path='/user-profile' element ={<UserProfileView/>}/>
+					<Route path='/dashboard' element={<AuthRoute>
+						<HomeView />
+					</AuthRoute>} />
+					<Route path='/dashboard' element={<AuthRoute>
+						<HomeView />
+					</AuthRoute>} />
 				</Routes>
 			</BrowserRouter>
 			<ToastContainer
