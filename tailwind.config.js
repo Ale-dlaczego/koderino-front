@@ -13,7 +13,9 @@ module.exports = {
 				},
 				primary: '#68C4B4',
 				secondary: '#4FA39C',
-				'page-bg': '#EEEEEE'
+				'orange': '#E9610B',
+				'page-bg': '#EEEEEE',
+				'modal-bg': 'rgba(243, 244, 246, 0.7)'
 			},
 			width: {
 				'150': '150px',

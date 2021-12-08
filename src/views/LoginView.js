@@ -48,7 +48,6 @@ const LoginView = () => {
 			navigate('/dashboard');
 		}
 		catch (err) {
-			console.error(err);
 			return toast.error('Wprowadź poprawne dane!');
 		}
 	};

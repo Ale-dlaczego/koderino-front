@@ -4,13 +4,20 @@ export const userSlice = createSlice({
 	name: 'user',
 	initialState: {
 		user: {
-			email: ''
-		}
+			email: '',
+			userData: {
+				phoneNumber: '',
+				localization: '',
+				name: ''
+			}
+			
+		},
 	},
 	reducers: {
 		setUser: (state, action) => {
 			state.user = action.payload;
-		}
+		},
+		
 	}
 });
 

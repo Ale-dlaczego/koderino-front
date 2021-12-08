@@ -3,7 +3,7 @@ import { Sidebar } from './../components/compositional/Sidebar';
 
 export const DefaultLayout = ({children}) => {
 	return (
-		<div className='w-screen h-screen bg-page-bg relative' >
+		<div className='min-w-screen min-h-screen bg-page-bg relative' >
 			{< Sidebar />}
 			<div className='pb-5 pr-7 container h-full flex m-auto'>
 				{children}

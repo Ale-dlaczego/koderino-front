@@ -12,9 +12,24 @@ function App() {
 	useEffect( async () => {
 		api.defaults.headers.common['Authorization'] = token;
 		const res = await api.get('users/me');
-		if (res.data) dispatch(setUser(res.data));
+		
+		if (res.data) {
+			if (Object.keys(res.data).indexOf('userData') < 0) res.data.userData = {
+				phoneNumber: '',
+				localization: '',
+				name: ''
+			};
+			dispatch(setUser(res.data));
+		}
 		else {
-			dispatch(setUser({email: ''}));
+			dispatch(setUser({
+				email: '',
+				userData: {
+					phoneNumber: '',
+					localization: '',
+					name: ''
+				}
+			}));
 		}
 	}, [token]);
 	
