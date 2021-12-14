@@ -9,7 +9,6 @@ import { FormInput } from './../components/userProfile/FormInput';
 import { Modal } from './../components/userProfile/Modal';
 import PrimaryButton from './../components/global/PrimaryButton';
 import { ToggleButtonWithText } from './../components/userProfile/ToggleButtonWithText';
-import api from '../config/api';
 import { setUserData } from '../store/userSlice';
 import { toast } from 'react-toastify';
 import { useAxios } from '../hooks/useAxios';

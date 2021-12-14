@@ -1,9 +1,10 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
-export const ModalInput = ({ type, title, placeholder,className }) => {
+export const ModalInput = ({ type, title, placeholder,className,children,defaultValue }) => {
 
 	const modalInputClass = () => {
-		return 'py-3 px-5 border border-gray-300 rounded-lg outline-none placeholder: text-gray-300 text-gray-400 text-xs ' ;
+		return 'py-3 px-5 border border-gray-300 rounded-lg outline-none placeholder: text-gray-300 text-gray-400 text-xs' ;
 	};
     
 	const renderTextInput = () => {
@@ -11,7 +12,9 @@ export const ModalInput = ({ type, title, placeholder,className }) => {
 	};
     
 	const renderSelectInput = () => {
-		return <select className={modalInputClass()}/>;
+		return <select className={modalInputClass()} defaultValue={defaultValue}>
+			{children}
+		</select>;
 	};
 
 	return (
@@ -22,3 +25,10 @@ export const ModalInput = ({ type, title, placeholder,className }) => {
 	);
 };
 
+ModalInput.propTypes = {
+	type: PropTypes.string,
+	title: PropTypes.string,
+	placeholder: PropTypes.string,
+	className: PropTypes.string,
+	children: PropTypes.node
+};

@@ -1,4 +1,7 @@
 module.exports = {
+	content: [
+		'./src/**/*.{js,jsx}',
+	],
 	darkMode: false,
 	important: true,
 	theme: {
@@ -15,6 +18,7 @@ module.exports = {
 				secondary: '#4FA39C',
 				'orange': '#E9610B',
 				'page-bg': '#EEEEEE',
+				'primary-pale': 'rgba(104,196,180, 0.3)',
 				'modal-bg': 'rgba(243, 244, 246, 0.7)',
 				'transparent-gray': 'rgba(229, 231, 235, 0.6)',
 			},
@@ -40,8 +44,15 @@ module.exports = {
 	},
 	variants: {
 		extend: {
-			fontWeight: ['hover']
+			fontWeight: ['hover'],
+		
+			
 		},
+		scrollbar: ['rounded']
+		
+		
 	},
-	plugins: [],
+	plugins: [
+		
+	],
 };
