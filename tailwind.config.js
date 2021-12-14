@@ -15,7 +15,8 @@ module.exports = {
 				secondary: '#4FA39C',
 				'orange': '#E9610B',
 				'page-bg': '#EEEEEE',
-				'modal-bg': 'rgba(243, 244, 246, 0.7)'
+				'modal-bg': 'rgba(243, 244, 246, 0.7)',
+				'transparent-gray': 'rgba(229, 231, 235, 0.6)',
 			},
 			width: {
 				'150': '150px',

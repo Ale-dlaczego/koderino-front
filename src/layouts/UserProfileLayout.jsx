@@ -1,9 +1,8 @@
-import { Card } from '../components/global/Card';
+import { Card } from './../components/global/Card';
 import { DefaultLayout } from './DefaultLayout';
-import { IconTitleWithDate } from '../components/global/IconTitleWithDate';
+import { IconTitleWithDate } from './../components/global/IconTitleWithDate';
 import React from 'react';
-import { Sidebar } from '../components/compositional/Sidebar';
-import { UserAvatar } from '../components/global/UserAvatar';
+import { UserAvatar } from './../components/global/UserAvatar';
 
 export const UserProfileLayout = () => {
 	return (
@@ -32,7 +31,9 @@ export const UserProfileLayout = () => {
 						<UserAvatar className='w-11 h-11 relative -ml-2' img='https://cdn.i.haymarketmedia.asia/?n=asian-investor%2Fcontent%2FMichael+Han+-+Brightsphere+-+crop+landscape.jpg&h=570&w=855&q=100&v=20190520&c=1'/>
 						<UserAvatar className='w-11 h-11 relative -ml-2' img='https://cdn.i.haymarketmedia.asia/?n=asian-investor%2Fcontent%2FMichael+Han+-+Brightsphere+-+crop+landscape.jpg&h=570&w=855&q=100&v=20190520&c=1'/>
 						<UserAvatar className='w-11 h-11 relative -ml-2' img='https://cdn.i.haymarketmedia.asia/?n=asian-investor%2Fcontent%2FMichael+Han+-+Brightsphere+-+crop+landscape.jpg&h=570&w=855&q=100&v=20190520&c=1'/>
-						<UserAvatar className='w-11 h-11 relative -ml-2' text='15+'/>
+						<UserAvatar className='w-11 h-11 relative -ml-2' >
+							<p>15+</p>
+						</UserAvatar>
 					</div>
 				</Card>
 				<Card title='Ostatnie stanowiska' className='w-350 ' icon={'bx bx-dots-horizontal-rounded'}>

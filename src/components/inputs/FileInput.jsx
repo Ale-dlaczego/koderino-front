@@ -1,4 +1,4 @@
-import PrimaryButton from '../global/PrimaryButton';
+import PrimaryButton from './../global/PrimaryButton';
 import React from 'react';
 
 export const FileInput = ({className}) => {

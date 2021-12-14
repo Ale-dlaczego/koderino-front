@@ -1,12 +1,21 @@
 import { FileInput } from './../inputs/FileInput';
-import { FormInput } from './FormInput';
 import { ModalInput } from './ModalInput';
 import PrimaryButton from './../global/PrimaryButton';
 import React from 'react';
+import { useAxios } from '../../hooks/useAxios';
 
 export const Modal = ({ isShown, setIsShown }) => {
 	
+	const { response: workPositionsResponse, loading: loadingWorkPositions, error: workPositionsError } = useAxios({
+		method: 'get',
+		url: 'work-positions',
+	});
 
+	// const renderWorkPositions = () => {
+	// 	return workPositionsResponse.forEach(position => (
+			
+	// 	))
+	// };
 
 	return (
 		<div className={`${isShown ? 'flex' : 'hidden'} w-full h-full fixed z-10 left-0 top-0 items-center justify-center bg-modal-bg  `}>

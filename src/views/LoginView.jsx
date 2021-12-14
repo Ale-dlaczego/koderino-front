@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { CheckboxInput } from '../components/global/CheckboxInput';
-import Constants from './../Constants';
+import { CheckboxInput } from './../components/global/CheckboxInput';
+import Constants from '../Constants';
 import EmailInput from './../components/inputs/EmailInput';
-import { HoverableLink } from '../components/global/HoverableLink';
-import LoginRegisterLayout from '../layouts/LoginRegisterLayout';
+import { HoverableLink } from './../components/global/HoverableLink';
+import LoginRegisterLayout from './../layouts/LoginRegisterLayout';
 import PasswordInput from './../components/inputs/PasswordInput';
 import PrimaryButton from './../components/global/PrimaryButton';
-import api from './../config/api';
+import api from '../config/api';
 import { setToken } from '../store/authorizationSlice';
 import { toast } from 'react-toastify';
 import { useCookies } from 'react-cookie';

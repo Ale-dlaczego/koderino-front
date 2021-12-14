@@ -1,39 +1,63 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { AvatarCard } from '../components/userProfile/AvatarCard';
-import { Card } from '../components/global/Card';
-import { CareerPointCard } from '../components/userProfile/CareerPointCard';
-import { DefaultLayout } from '../layouts/DefaultLayout';
-import { FormInput } from '../components/userProfile/FormInput';
+import { AvatarCard } from './../components/userProfile/AvatarCard';
+import { Card } from './../components/global/Card';
+import { CareerPointCard } from './../components/userProfile/CareerPointCard';
+import { DefaultLayout } from './../layouts/DefaultLayout';
+import { FormInput } from './../components/userProfile/FormInput';
 import { Modal } from './../components/userProfile/Modal';
 import PrimaryButton from './../components/global/PrimaryButton';
-import { ToggleButton } from '../components/userProfile/ToggleButton';
-import { ToggleButtonWithText } from '../components/userProfile/ToggleButtonWithText';
-import api from './../config/api';
-import { setUser } from '../store/userSlice';
+import { ToggleButtonWithText } from './../components/userProfile/ToggleButtonWithText';
+import api from '../config/api';
+import { setUserData } from '../store/userSlice';
 import { toast } from 'react-toastify';
-import userEditErrors from './../errors/userEditErrors';
+import { useAxios } from '../hooks/useAxios';
+import userEditErrors from '../errors/userEditErrors';
 
 export const EditView = () => {
 
-	const user = useSelector(state => { return state.user.user; });
-	
-
+	const user = useSelector(state => { return state.user.user; });	
 	const [isCareerPointModal, setIsCareerPointModal] = useState(false);
-	const [name, setName] = useState(user.userData.name );
-	const [email, setEmail] = useState(user.email );
-	const [phoneNumber, setPhoneNumber]= useState(user.userData.phoneNumber );
-	const [localization, setLocalization] = useState(user.userData.localization );
-	const [errors, setErrors] = useState([]);
 	const dispatch = useDispatch();
+	const [name, setName] = useState('');
+	const [phoneNumber, setPhoneNumber]= useState('');
+	const [localization, setLocalization] = useState('');
+	const [errors, setErrors] = useState([]);
+	
+	
+	
+	const {response: userDataResponse, error: userDataError, loading: userDataLoading, fetchData: updateUserData } = useAxios({
+		method: 'post',
+		url: 'users-data',
+		data: {
+			name,
+			phoneNumber,
+			localization
+		}
+	});
+
+	useEffect(() => {
+		if (userDataError) {
+			setErrors([...errors, ...userDataError]);
+		}
+		if (userDataResponse) {
+			dispatch(setUserData(userDataResponse));
+			showSuccessAlert();
+			setErrors([]);
+		}
+	}, [userDataResponse, userDataError]);
+
+	useEffect(() => {
+		setLocalization(user.userData.localization);
+		setName(user.userData.name);
+		setPhoneNumber(user.userData.phoneNumber);
+	}, [user]);
 
 	const handleNameInput = (e) => {
 		setName(e.target.value);
 	};
-	const handleEmailInput = (e) => {
-		setEmail(e.target.value);
-	};
+	
 	const handlePhoneNumberInput = (e) => {
 		setPhoneNumber(e.target.value);
 	};
@@ -45,24 +69,8 @@ export const EditView = () => {
 		setIsCareerPointModal(!isCareerPointModal);
 	};
 
-	const setUserBasicInformation = async () => {
-		try {
-			await api.post('users-data', {
-				name,
-				phoneNumber,
-				localization
-			});
-			const res = await api.get('users/me');
-			dispatch(setUser(res.data));
-			showSuccessAlert();
-			setErrors([]);
-		}
-		catch (err) {
-			const resErrors = err.response.data.message;
-			setErrors(typeof resErrors === 'object'? [...resErrors] : [resErrors]);
-		}
-	};
-
+	
+	
 	const translateErrorsMessage = () => {
 		if (errors.length === 0) return;
 		switch (errors[0]) {
@@ -76,28 +84,20 @@ export const EditView = () => {
 	};
 
 	
-	useEffect(() => {
-		setEmail(user.email);
-		setLocalization(user.userData.localization);
-		setName(user.userData.name);
-		setPhoneNumber(user.userData.phoneNumber);
-	},[user]);
-
 
 	return (
 		<DefaultLayout>
 			<Modal isShown={isCareerPointModal} setIsShown={showCareerPointModal} />
-			{console.log(user)}
 			<div className='w-full h-full flex flex-col '>
-				<AvatarCard name={user.userData.name} />
+				<AvatarCard name={user?.userData?.name} />
 				<div className='w-full flex mt-6'>
 					<Card className={'w-2/6 mr-6 p-7'} title={'Podstawowe informacje'} >
 						<div className='w-full flex flex-col mt-6'>
 							<FormInput placeholder={'Imię i nazwisko'} type={'text'} value={name} onChange={handleNameInput}/>
-							<FormInput placeholder={'Adres email'} type={'text'} value={email} onChange={handleEmailInput}/>
-							<FormInput placeholder={'Numer telefonu'} type={'text'} value={phoneNumber} onChange={handlePhoneNumberInput}/>
+							<FormInput placeholder={'Adres email'} type={'text'} value={user.email} onChange={() => {}} disabled />
+							<FormInput placeholder={'Numer telefonu'} type={'text'} value={phoneNumber} onChange={handlePhoneNumberInput} isError={errors.includes(userEditErrors.PHONE_NUMBER_MUST_BE_LONGER_THAN_OR_EQUAL_TO_9_CHARACTERS)} errorMessage={translateErrorsMessage()}/>
 							<FormInput placeholder={'Lokalizacja'} type={'text'} value={localization} onChange={handleLocalizationInput}/>
-							<PrimaryButton className={'bg-primary hover:scale-102'} title={'Zapisz'} onClick={setUserBasicInformation}/>
+							<PrimaryButton className={'bg-primary hover:scale-102'} title={'Zapisz'} onClick={updateUserData}/>
 						</div>
 					</Card>
 					<Card className={'w-4/6 p-7'} title={'Punkty kariery'} >

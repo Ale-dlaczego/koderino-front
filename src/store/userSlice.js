@@ -10,16 +10,18 @@ export const userSlice = createSlice({
 				localization: '',
 				name: ''
 			}
-			
 		},
 	},
 	reducers: {
 		setUser: (state, action) => {
 			state.user = action.payload;
 		},
+		setUserData: (state, action) => {
+			state.user.userData = action.payload;
+		},
 		
 	}
 });
 
-export const { setUser } = userSlice.actions;
+export const { setUser, setUserData } = userSlice.actions;
 export default userSlice.reducer;

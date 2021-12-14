@@ -1,4 +1,4 @@
-import { Logo } from './../global/Logo';
+import { Logo } from '../global/Logo';
 import React from 'react';
 
 export const Sidebar = () => {
